@@ -1,4 +1,6 @@
-require "dragonfly/cache/version"
+# frozen_string_literal: true
+
+require 'dragonfly/cache/version'
 
 module Dragonfly
   module Cache
