@@ -7,6 +7,7 @@ require 'dragonfly/cache/version'
 Gem::Specification.new do |spec|
   spec.name          = 'dragonfly-cache'
   spec.version       = Dragonfly::Cache::VERSION
+  spec.licenses      = ['Apache-2.0']
   spec.authors       = ['Gaël-Ian Havard']
   spec.email         = ['gael-ian@notus.sh']
 
