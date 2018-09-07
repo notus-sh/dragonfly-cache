@@ -4,3 +4,8 @@ inherit_mode:
 
 Metrics/LineLength:
   Max: 150
+
+# DSLs produce long blocks.
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*_spec.rb'
