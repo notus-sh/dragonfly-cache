@@ -54,12 +54,12 @@ module Dragonfly
       def options_for(job)
         basename = job.basename || job.signature
         sanitized = basename.gsub(/[[:space:][:punct:][:cntrl:]]/, ' ').squeeze(' ').strip
-        transliterated = I18n.transliterate(sanitized, :replacement => ' ').squeeze(' ').strip
-        downcased = (transliterated.empty? ? job.signature : transliterated).downcase.gsub(' ', '-')
+        transliterated = I18n.transliterate(sanitized, replacement: ' ').squeeze(' ').strip
+        downcased = (transliterated.empty? ? job.signature : transliterated).downcase.tr(' ', '-')
 
         {
           shaish: job.sha[0..(sha_size - 1)],
-          normalized_name: downcased
+          normalized_name: [downcased, job.ext].join('.')
         }
       end
 

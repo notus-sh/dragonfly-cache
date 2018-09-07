@@ -47,6 +47,13 @@ describe Dragonfly::Cache::Plugin do
     end
   end
 
+  it 'should return an url with correct file extension' do
+    jobs.each_value do |job|
+      # We know the name is the last part of the url
+      expect(File.extname(app.url_for(job)).to_s.gsub(/\A\./, '')).to eq(job.ext.to_s)
+    end
+  end
+
   it 'should always return the same url for a given job' do
     jobs.each_value do |job|
       expect(app.url_for(job)).to eq(app.url_for(job))
