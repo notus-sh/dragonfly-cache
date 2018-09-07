@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
 
         Dragonfly.app.configure do
           plugin :dragonfly_cache,
-            server_root: MyRails.application.root.join('public'),
+            server_root: Rails.application.root.join('public'),
             url_format:  '/media-cache/:sha/:name'
         end
 
