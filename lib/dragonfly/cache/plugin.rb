@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 require 'uri'
+require 'securerandom'
+require 'i18n'
+require 'digest/sha1'
+
 require 'dragonfly/cache/config'
 require 'dragonfly/cache/manager'
 
@@ -48,8 +52,14 @@ module Dragonfly
       end
 
       def options_for(job)
+        basename = job.basename || job.signature
+        sanitized = basename.gsub(/[[:space:][:punct:][:cntrl:]]/, ' ').squeeze(' ').strip
+        transliterated = I18n.transliterate(sanitized, :replacement => ' ').squeeze(' ').strip
+        downcased = (transliterated.empty? ? job.signature : transliterated).downcase.gsub(' ', '-')
+
         {
-          shaish: job.sha[0..(sha_size - 1)]
+          shaish: job.sha[0..(sha_size - 1)],
+          normalized_name: downcased
         }
       end
 

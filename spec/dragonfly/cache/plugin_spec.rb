@@ -24,18 +24,26 @@ describe Dragonfly::Cache::Plugin do
   let(:jobs) do
     {
       basic: sample_job(app, type: :basic),
-      text: sample_job(app, type: :text)
+      text: sample_job(app, type: :text),
+      text2: sample_job(app, type: :text2)
     }
   end
 
   it 'should be called on url building' do
-    expect_any_instance_of(Dragonfly::Cache::Plugin).to receive(:url_for).twice
+    expect_any_instance_of(Dragonfly::Cache::Plugin).to receive(:url_for).thrice
     jobs.each_value { |job| app.url_for(job) }
   end
 
   it 'should return a cache url' do
     jobs.each_value do |job|
       expect(app.url_for(job)).to start_with('/dragonfly-cache/')
+    end
+  end
+
+  it 'should return a clean url' do
+    jobs.each_value do |job|
+      # We know the name is the last part of the url
+      expect(File.basename(app.url_for(job))).to match(/[[:alnum:]-]/)
     end
   end
 

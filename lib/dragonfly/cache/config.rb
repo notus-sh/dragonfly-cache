@@ -26,7 +26,8 @@ module Dragonfly
       end
 
       def rewrite_url_format!
-        servers_options[:url_format] = servers_options[:url_format].gsub(%r{/:sha/}, '/:shaish/')
+        servers_options[:url_format] = servers_options[:url_format].gsub(%r{/:sha}, '/:shaish')
+        servers_options[:url_format] = servers_options[:url_format].gsub(%r{/:name}, '/:normalized_name')
       end
     end
   end

@@ -6,6 +6,6 @@ def sample_job(app = dragonfly_test_app, type: :basic)
   case type
   when :basic then Dragonfly::Job.new(app, 'content')
   when :text  then app.fetch_file(File.join(SAMPLES_DIR, 'dragonfly.md'))
-  when :text2 then app.fetch_file(File.join(SAMPLES_DIR, 'cache.md'))
+  when :text2 then app.fetch_file(File.join(SAMPLES_DIR, 'cache (computing).md'))
   end
 end
