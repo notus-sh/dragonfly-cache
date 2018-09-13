@@ -17,12 +17,11 @@ module Dragonfly
 
       attr_reader :config, :manager
 
-      delegate %i[servers_options] => :config
-      delegate %i[sha_size valid_uri? store] => :manager
+      delegate %i[cache valid? job_options] => :manager
 
       def call(app, cache_servers_options = {})
-        @config   = Dragonfly::Cache::Config.new(cache_servers_options)
-        @manager  = Dragonfly::Cache::Manager.new(self)
+        @config = Dragonfly::Cache::Config.new(cache_servers_options)
+        @manager = Dragonfly::Cache::Manager.new(self)
 
         app.define_url do |app, job, opts|
           url_for(app, job, opts)
@@ -32,41 +31,24 @@ module Dragonfly
         end
       end
 
+      def url_for(app, job, opts)
+        cache(job) { build_url_for(app, job, opts) }
+      end
+
       protected
 
-      def url_for(app, job, opts)
-        uri = find_valid_url_for(app, job, opts)
-        # File are stored on url building instead of in a before_serve block to allow use of assets host
-        store(job, uri)
-        uri.to_s
-      end
-
-      def find_valid_url_for(app, job, opts)
+      def build_url_for(app, job, opts)
         loop do
-          url = server_for(app).url_for(job, options_for(job).merge(opts))
-          uri = URI.parse(url)
-          uri.query = nil
-          uri.fragment = nil
-          return uri if valid_uri?(job, uri)
+          url = server_for(app).url_for(job, job_options(job).merge(opts))
+          path = URI.parse(url).path
+          return path if valid?(job, path)
         end
-      end
-
-      def options_for(job)
-        basename = job.basename || job.signature
-        sanitized = basename.gsub(/[[:space:][:punct:][:cntrl:]]/, ' ').squeeze(' ').strip
-        transliterated = I18n.transliterate(sanitized, replacement: ' ').squeeze(' ').strip
-        downcased = (transliterated.empty? ? job.signature : transliterated).downcase.tr(' ', '-')
-
-        {
-          shaish: job.sha[0..(sha_size - 1)],
-          normalized_name: [downcased, job.ext].join('.')
-        }
       end
 
       def server_for(app)
         @@servers[app.name] ||= begin
           server = app.server.dup
-          servers_options.each do |name, value|
+          config.servers_options.each do |name, value|
             server.send("#{name}=", value) if server.respond_to?("#{name}=")
           end
           server

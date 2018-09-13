@@ -30,8 +30,9 @@ describe Dragonfly::Cache::Plugin do
   end
 
   it 'should be called on url building' do
-    expect_any_instance_of(Dragonfly::Cache::Plugin).to receive(:url_for).thrice
-    jobs.each_value { |job| app.url_for(job) }
+    times = rand(2..4)
+    expect_any_instance_of(Dragonfly::Cache::Plugin).to receive(:url_for).exactly(jobs.size * times)
+    times.times { jobs.each_value { |job| app.url_for(job) } }
   end
 
   it 'should return a cache url' do
@@ -71,5 +72,12 @@ describe Dragonfly::Cache::Plugin do
         expect(f.read).to eq(job.content.data)
       end
     end
+  end
+
+  it 'should prevent future processing of an image' do
+    expect_any_instance_of(Dragonfly::ImageMagick::Processors::Convert).to receive(:call).once
+    job = sample_job(app, type: :image)
+    job.thumb('80x80').url
+    job.thumb('80x80').url
   end
 end

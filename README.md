@@ -43,3 +43,7 @@ Configured as this, cached files will be stored in `/public/media-cache/:sha/:na
 ## How does it work?
 
 `dragonfly-cache` use a method similar to [the one described in the Dragonfly documentation to process files on-the-fly and serve them remotely](http://markevans.github.io/dragonfly/cache#processing-on-the-fly-and-serving-remotely) but use only `define_url`. 
+
+## Credits
+
+The dragonfly photography used in specs is a work from [André Karwath](https://commons.wikimedia.org/wiki/User:Aka) and is licensed under the [Creative Commons Attribution-Share Alike 2.5 Generic](https://creativecommons.org/licenses/by-sa/2.5/deed.en) license.

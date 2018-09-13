@@ -15,6 +15,13 @@ module Dragonfly
         rewrite_url_format!
       end
 
+      def base_dir
+        @base_dir ||= begin
+          path_format = File.join(servers_options[:server_root], servers_options[:url_format])
+          path_format.split('/').take_while { |p| p != ':shaish' }.join('/')
+        end
+      end
+
       protected
 
       def validate!
