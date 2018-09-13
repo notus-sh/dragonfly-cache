@@ -23,6 +23,7 @@ module Dragonfly
 
       def cache(job)
         return @map[job.sha] if @map.key?(job.sha)
+
         store(job, yield)
       end
 
@@ -59,6 +60,7 @@ module Dragonfly
 
       def increase_sha_size!
         raise Error, "Can't build longer :sha identifier" if @sha_size == MAX_SHA_SIZE
+
         @sha_size += 1
       end
 
