@@ -14,6 +14,7 @@ module Dragonfly
         def initialize(config)
           @root = config[:server_root]
           @internal = {}
+          load!
         end
 
         def store(key, value)
