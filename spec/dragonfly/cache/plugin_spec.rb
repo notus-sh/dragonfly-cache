@@ -65,6 +65,18 @@ describe Dragonfly::Cache::Plugin do
     expect(app.url_for(jobs[:basic])).not_to eq(app.url_for(jobs[:text]))
   end
 
+  it 'should increase :sha size to avoid key collisions' do
+    job = sample_job(app, type: :image)
+
+    # 2 letters sha-ish may go from '00' to 'ff'. Test at least one more
+    shaish_range = 0x00..(0xFF + rand(10))
+    shaish_set = shaish_range.each_with_object(Set.new) do |i, set|
+      set << File.basename(File.dirname(job.thumb("#{i}x#{i}").url))
+    end
+
+    expect(shaish_set.size).to eq(shaish_range.size)
+  end
+
   it 'should store the job result at the returned url' do
     jobs.each_value do |job|
       File.open(File.join(tmp, app.url_for(job))) do |f|

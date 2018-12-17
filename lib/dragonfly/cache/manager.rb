@@ -29,6 +29,7 @@ module Dragonfly
 
       def valid?(job, uri)
         valid = (@map.key?(job.sha) && @map[job.sha] == uri) || !@map.key?(job.sha)
+        valid &= (@map.value?(uri) && @map.key(uri) == job.sha) || !@map.value?(uri)
         increase_sha_size! unless valid
         valid
       end

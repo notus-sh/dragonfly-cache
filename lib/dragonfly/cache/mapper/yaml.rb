@@ -9,7 +9,7 @@ module Dragonfly
         extend Forwardable
 
         attr_reader :root, :internal
-        delegate %i[[] key? value? keys values] => :internal
+        delegate %i[[] key? value? key keys values] => :internal
 
         def initialize(config)
           @root = config[:server_root]
