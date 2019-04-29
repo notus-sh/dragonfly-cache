@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
 
-  spec.add_dependency 'dragonfly', '~> 1.1.5'
+  spec.add_dependency 'dragonfly'
   spec.add_dependency 'i18n'
 
   spec.add_development_dependency 'bundler', '~> 1.16'
