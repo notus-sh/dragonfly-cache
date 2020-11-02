@@ -15,16 +15,16 @@ Gem::Specification.new do |spec|
   spec.description   = 'Allow Dragonfly to keep a cache of jobs results'
   spec.homepage      = 'https://github.com/notus-sh/dragonfly-cache'
 
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = 'https://rubygems.org'
-  else
-    raise 'RubyGems 2.0 or newer is required.'
-  end
+  raise 'RubyGems 2.0 or newer is required.' unless spec.respond_to?(:metadata)
+
+  spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 
   spec.require_paths = ['lib']
   spec.files         = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
+
+  spec.required_ruby_version = '>= 2.5'
 
   spec.add_dependency 'dragonfly'
   spec.add_dependency 'i18n'

@@ -23,8 +23,8 @@ module Dragonfly
         @config = Dragonfly::Cache::Config.new(cache_servers_options)
         @manager = Dragonfly::Cache::Manager.new(self)
 
-        app.define_url do |app, job, opts|
-          url_for(app, job, opts)
+        app.define_url do |same, job, opts|
+          url_for(same, job, opts)
         rescue Dragonfly::Cache::Error => e
           Dragonfly.warn(e.message)
           app.server.url_for(job, opts) # Fallback to default Dragonfly::App url building

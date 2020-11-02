@@ -69,7 +69,7 @@ describe Dragonfly::Cache::Plugin do
     job = sample_job(app, type: :image)
 
     # 2 letters sha-ish may go from '00' to 'ff'. Test at least one more
-    shaish_range = 0x00..(0xFF + rand(10))
+    shaish_range = 0x00..(rand(0xFF..0x110))
     shaish_set = shaish_range.each_with_object(Set.new) do |i, set|
       set << File.basename(File.dirname(job.thumb("#{i}x#{i}").url))
     end
