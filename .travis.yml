@@ -1,0 +1,11 @@
+language: ruby
+sudo: false
+script: "bundle exec rake clean spec"
+
+rvm:
+  - 2.5
+  - 2.6
+  - 2.7
+
+gemfile:
+  - Gemfile
