@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dragonfly-cache (0.1.7)
+    dragonfly-cache (0.1.8)
       dragonfly
       i18n
 
