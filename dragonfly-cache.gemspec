@@ -33,6 +33,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.10.0'
   spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop-rake'
+  spec.add_development_dependency 'rubocop-rspec'
 
   spec.post_install_message = <<~POST_INSTALL_MESSAGE
     Don't forget to configure Dragonfly::Cache:
