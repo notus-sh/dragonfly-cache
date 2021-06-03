@@ -87,7 +87,7 @@ describe Dragonfly::Cache::Plugin do
   end
 
   it 'should prevent future processing of an image' do
-    expect_any_instance_of(Dragonfly::ImageMagick::Processors::Convert).to receive(:call).once
+    expect(Dragonfly::ImageMagick::Commands).to receive(:convert).once
     job = sample_job(app, type: :image)
     job.thumb('80x80').url
     job.thumb('80x80').url
