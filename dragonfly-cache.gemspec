@@ -16,12 +16,22 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/notus-sh/dragonfly-cache'
 
   raise 'RubyGems 2.0 or newer is required.' unless spec.respond_to?(:metadata)
+  spec.metadata = {
+    'allowed_push_host' => 'https://rubygems.org',
 
-  spec.metadata['allowed_push_host'] = 'https://rubygems.org'
+    'bug_tracker_uri'   => 'https://github.com/notus-sh/dragonfly-cache/issues',
+    'changelog_uri'     => 'https://github.com/notus-sh/dragonfly-cache/blob/master/CHANGELOG.md',
+    'homepage_uri'      => 'https://github.com/notus-sh/dragonfly-cache',
+    'source_code_uri'   => 'https://github.com/notus-sh/dragonfly-cache',
+    'funding_uri'       => 'https://opencollective.com/notus-sh'
+  }
 
   spec.require_paths = ['lib']
-  spec.files         = Dir.chdir(File.expand_path(__dir__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+
+  excluded_dirs = %r{^(.github|spec)/}
+  excluded_files = %w[.gitignore .rspec .rubocop.yml Gemfile Gemfile.lock Rakefile]
+  spec.files = `git ls-files -z`.split("\x0").reject do |f|
+    f.match(excluded_dirs) || excluded_files.include?(f)
   end
 
   spec.required_ruby_version = '>= 2.6'
