@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-SAMPLES_DIR = File.join(Dir.pwd, 'spec', 'samples')
+SAMPLES_DIR = File.join(Dir.pwd, 'spec', 'fixtures')
 
 def sample_job(app = dragonfly_test_app, type: :basic)
   case type

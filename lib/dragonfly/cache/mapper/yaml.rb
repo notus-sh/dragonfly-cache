@@ -5,7 +5,7 @@ require 'yaml'
 module Dragonfly
   module Cache
     module Mapper
-      class Yaml
+      class Yaml # :nodoc:
         extend Forwardable
 
         attr_reader :root, :internal
