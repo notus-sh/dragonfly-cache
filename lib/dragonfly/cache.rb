@@ -4,7 +4,7 @@ require 'openssl'
 require 'dragonfly'
 
 module Dragonfly
-  module Cache
+  module Cache # :nodoc:
     class Error < ::StandardError; end
   end
 end

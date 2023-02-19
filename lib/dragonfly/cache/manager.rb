@@ -5,7 +5,7 @@ require 'dragonfly/cache/storage/local'
 
 module Dragonfly
   module Cache
-    class Manager
+    class Manager # :nodoc:
       extend Forwardable
 
       MIN_SHA_SIZE = 2

@@ -2,7 +2,7 @@
 
 module Dragonfly
   module Cache
-    class Config
+    class Config # :nodoc:
       attr_accessor :servers_options
 
       def initialize(servers_options = {})
@@ -29,7 +29,10 @@ module Dragonfly
           raise Dragonfly::Cache::Error, ':server_root option is missing or directory does not exist'
         end
 
-        raise Dragonfly::Cache::Error, ':url_format option must include `:sha`' if (servers_options[:url_format] =~ %r{/:sha/}).nil?
+        return if servers_options[:url_format].include?('/:sha/')
+
+        raise Dragonfly::Cache::Error,
+              ':url_format option must include `:sha`'
       end
 
       def rewrite_url_format!

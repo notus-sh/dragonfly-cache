@@ -10,10 +10,12 @@ require 'dragonfly/cache/manager'
 
 module Dragonfly
   module Cache
-    class Plugin
+    class Plugin # :nodoc:
       extend Forwardable
 
+      # rubocop:disable Style/ClassVars
       @@servers = {}
+      # rubocop:enable Style/ClassVars
 
       attr_reader :config, :manager
 

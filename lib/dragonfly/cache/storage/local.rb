@@ -3,7 +3,7 @@
 module Dragonfly
   module Cache
     module Storage
-      class Local
+      class Local # :nodoc:
         attr_reader :root, :format
 
         def initialize(config)
