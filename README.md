@@ -1,6 +1,6 @@
 # dragonfly-cache
 
-[![Build Status](https://travis-ci.com/notus-sh/dragonfly-cache.svg?branch=master)](https://travis-ci.com/notus-sh/dragonfly-cache)
+![Build status](https://github.com/notus-sh/dragonfly-cache/actions/workflows/unit-tests.yml/badge.svg?branch=main)
 [![Gem Version](https://badge.fury.io/rb/dragonfly-cache.svg)](https://badge.fury.io/rb/dragonfly-cache)
 
 `dragonfly-cache` is a cache adapter for [Dragonfly](http://markevans.github.io/dragonfly/). It allows you to store Dragonfly's jobs results without running them again and again on each call. 
