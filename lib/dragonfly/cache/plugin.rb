@@ -51,7 +51,7 @@ module Dragonfly
         @@servers[app.name] ||= begin
           server = app.server.dup
           config.servers_options.each do |name, value|
-            server.send("#{name}=", value) if server.respond_to?("#{name}=")
+            server.send(:"#{name}=", value) if server.respond_to?(:"#{name}=")
           end
           server
         end
