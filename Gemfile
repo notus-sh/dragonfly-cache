@@ -7,6 +7,7 @@ gemspec
 
 group :development, :test do
   gem 'base64'
+  gem 'logger'
 
   gem 'rubocop'
   gem 'rubocop-performance'
