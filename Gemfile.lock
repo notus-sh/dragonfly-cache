@@ -23,6 +23,7 @@ GEM
       concurrent-ruby (~> 1.0)
     json (2.9.1)
     language_server-protocol (3.17.0.3)
+    logger (1.6.4)
     multi_json (1.15.0)
     ostruct (0.6.1)
     parallel (1.26.3)
@@ -79,6 +80,7 @@ DEPENDENCIES
   base64
   bundler (~> 2.1)
   dragonfly-cache!
+  logger
   rake (~> 13.0)
   rspec (~> 3.13.0)
   rubocop
