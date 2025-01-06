@@ -3,4 +3,5 @@
 source 'https://rubygems.org'
 
 gemspec path: '../..'
+gem 'base64'
 gem 'logger'
