@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Install imagemagick
+        run: sudo apt install -y imagemagick
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
