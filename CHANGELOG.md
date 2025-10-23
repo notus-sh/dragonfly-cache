@@ -6,8 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## Version 0.2.0 (2025-10-23)
+
 ### Changed
 
+* Configure Dependabot to automatically update Github Actions (#27)
 * Bump minimum required Ruby version to 3.2 (#25)
 * Remove Ruby 3.0 and Ruby 3.1 from the test matrix (#23)
 * Add Ruby 3.4 to the test matrix (#20)
