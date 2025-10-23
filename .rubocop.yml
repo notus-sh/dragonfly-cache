@@ -1,8 +1,8 @@
-require:
+plugins:
   - rubocop-performance
   - rubocop-rake
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 3.2
   NewCops: enable

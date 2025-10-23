@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
-* Remove Ruby 3.0 and Ruby 3.1 from the test matrix (#23) 
+* Bump minimum required Ruby version to 3.2 (#25)
+* Remove Ruby 3.0 and Ruby 3.1 from the test matrix (#23)
 * Add Ruby 3.4 to the test matrix (#20)
 * Update test matrix (#14)  
   Add Ruby 3.3. Drop Ruby 2.6 and Ruby 2.7
