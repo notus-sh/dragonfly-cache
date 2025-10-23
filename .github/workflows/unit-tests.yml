@@ -19,7 +19,7 @@ jobs:
       BUNDLE_GEMFILE: ${{ github.workspace }}/dev/gemfiles/ci.gemfile
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
       - name: Install imagemagick
         run: sudo apt install -y imagemagick
       - name: Set up Ruby
