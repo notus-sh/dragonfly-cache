@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+* Add Ruby 4.0 to the test matrix (#32)
 * Configure Dependabot to automatically update Github Actions (#27)
 * Bump minimum required Ruby version to 3.2 (#25)
 * Remove Ruby 3.0 and Ruby 3.1 from the test matrix (#23)
